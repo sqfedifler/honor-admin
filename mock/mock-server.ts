@@ -11,6 +11,7 @@ import { accessTokenAuth } from './security'
 
 const app = express()
 const port = 9528
+// 根据 swagger api定义 文件中的信息动态生成接口路由
 const { connector, summarise } = require('swagger-routes-express')
 
 // Compression
@@ -41,6 +42,7 @@ const options = {
     AccessTokenAuth: accessTokenAuth
   }
 }
+// 使用connect连接api路由文件和express路由系统
 const connectSwagger = connector(api, apiDefinition, options)
 connectSwagger(app)
 // Print swagger router api summary

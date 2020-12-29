@@ -1,3 +1,22 @@
+export interface Hero {
+  id: number
+  name: string// 英雄名称
+  icon: string// 英雄图标名称
+  classify: string[]// 英雄分类
+ }
+
+export interface Player{
+  id: number
+  accountname: string
+  nickname: string
+  avatar: string
+  level: number // ⽤户等级
+  exp: number // ⽤户经验值
+  rank: number // 排位赛段位
+  bravepoints: number
+  winningstreak: number
+  wanttoplay: Hero[]
+ }
 export interface IArticleData {
   id: number
   status: string

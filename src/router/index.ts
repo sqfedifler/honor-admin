@@ -1,3 +1,4 @@
+import { playerRoutes } from './modules/players'
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 
@@ -201,6 +202,7 @@ export const asyncRoutes: RouteConfig[] = [
   },
   /** when your routing map is too long, you can split it into small modules **/
   componentsRouter,
+  playerRoutes,
   chartsRouter,
   nestedRouter,
   tableRouter,

@@ -47,6 +47,7 @@ const messages = {
 }
 
 export const getLocale = () => {
+  // 默认获取cookie中语言设置
   const cookieLanguage = getLanguage()
   if (cookieLanguage) {
     return cookieLanguage
