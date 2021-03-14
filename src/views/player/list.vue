@@ -3,13 +3,16 @@
     <!-- 过滤条件 -->
     <div class="filter-container">
       <el-input
-       v-model="listQuery.accountname"
-       :placeholder="$t('player.accountname')"
-       style="width:200px"
-       @keyup.enter.native="handleFilter"
+        v-model="listQuery.accountname"
+        :placeholder="$t('player.accountname')"
+        style="width:200px"
+        @keyup.enter.native="handleFilter"
       ></el-input>
       <el-button type="primary" icon="el-icon-search" @click="handleFilter">
-        {{$t('player.btnFilter')}}
+        {{ $t("player.btnFilter") }}
+      </el-button>
+      <el-button type="success" icon="el-icon-edit" @click="handleCreate">
+        {{ $t("player.btnCreate") }}
       </el-button>
     </div>
     <el-table
@@ -38,11 +41,11 @@
     </el-table>
     <!-- 分页 -->
     <pagination
-     v-total="total>0"
-     :total="total"
-     :page.sync="listQuery.page"
-     :limit.sync="listQuery.limit"
-     @pagination="getList"
+      v-total="total > 0"
+      :total="total"
+      :page.sync="listQuery.page"
+      :limit.sync="listQuery.limit"
+      @pagination="getList"
     ></pagination>
   </div>
 </template>
@@ -57,9 +60,9 @@ import { Player } from "../../api/types";
 import Pagination from "../../components/Pagination/index.vue";
 
 @Component({
-  name:'PlayList',
-  components:{
-   Pagination
+  name: "PlayList",
+  components: {
+    Pagination
   }
 })
 export default class extends Vue {
@@ -67,14 +70,14 @@ export default class extends Vue {
   list: Player[] = [];
   listloading = true;
   //总条目数
-  total=0;
+  total = 0;
 
   //查询条件
-  listQuery={
-    page:1,
-    limit:10,
-    accountname:""
-  }
+  listQuery = {
+    page: 1,
+    limit: 10,
+    accountname: ""
+  };
   created() {
     console.log("进入");
     this.getList();
@@ -85,16 +88,19 @@ export default class extends Vue {
     const { data } = await getPlayers(this.listQuery);
     console.log(data);
     this.list = data.players;
-    this.total=data.total;
+    this.total = data.total;
     this.listloading = false;
   }
   //过滤的处理
-  handleFilter(){
+  handleFilter() {
     //重置页码
-    this.listQuery.page=1;
-    this.getList()
+    this.listQuery.page = 1;
+    this.getList();
+  }
 
-
+  handleCreate() {
+    //重置页码
+   this.$router.push('/players/create')
   }
 }
 </script>
